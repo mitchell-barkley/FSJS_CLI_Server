@@ -1,8 +1,9 @@
 {
-    "name": "AppConfigCLI",
-    "version": "1.0.0",
-    "description": "The Command Line Interface (CLI) for the MyApp.",
-    "main": "myapp.js",
-    "superuser": "adm1n",
-    "database": "exampledb"
+  "name": "AppConfigCLI",
+  "version": "1.0.0",
+  "description": "The Command Line Interface (CLI) for Main App.",
+  "main": "main.js",
+  "superuser": "admin",
+  "database": "dvdrental",
+  "sakila": "world"
 }

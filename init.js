@@ -2,29 +2,29 @@ const fs = require('fs');
 const path = require('path');
 const fsPromises = require('fs').promises;
 
-const folders = ['models', 'views', 'routes', 'logs', 'json'];
+const folders = ['models', 'views', 'routes', 'images', 'logs', 'json'];
 
 const configjson = {
     name: 'AppConfigCLI',
     version: '1.0.0',
-    description: 'The Command Line Interface (CLI) for the MyApp.',
-    main: 'myapp.js',
-    superuser: 'adm1n',
-    database: 'exampledb'
+    description: 'The Command Line Interface (CLI) for Main App.',
+    main: 'main.js',
+    superuser: 'admin',
+    database: 'dvdrental','sakila':'world'
 };
 
 const tokenjson = [{
-    created: '1969-01-31 12:30:00',
-    username: 'username',
-    email: 'user@example.com',
-    phone: '5556597890',
+    created: '1985-10-08 18:35:00',
+    username: 'IRONDUKE',
+    email: 'fake_address@example.com',
+    phone: '5558675309',
     token: 'token',
-    expires: '1969-02-03 12:30:00',
+    expires: '2019-12-23 12:30:00',
     confirmed: 'tbd'
 }];
 
 function createFolders() {
-    if(DEBUG) console.log('init.createFolders()');
+    if(DEBUG) console.log('Initializing folders...');
     let mkcount = 0;
     folders.forEach(element => {
         if(DEBUG) console.log(element);
@@ -38,16 +38,16 @@ function createFolders() {
         }
     });
     if(mkcount === 0) {
-        console.log('All folders already exist.');
-    } else if (mkcount <= folders.length) {
-        console.log(mkcount + ' of ' + folders.length + ' folders were created.');
+        if(DEBUG) console.log('All folders already exist.');
+    } else if (mkcount === folders.length) {
+        if(DEBUG) console.log('All folders successfully created.');
     } else {
-        console.log('All folders successfully created.');
+        if(DEBUG) console.log(mkcount + ' of ' + folders.length + ' folders were created.');
     }
 };
 
 function createFiles() {
-    if(DEBUG) console.log('init.createFiles()');
+    if(DEBUG) console.log('Initializing files...');
     try {
         let configdata = JSON.stringify(configjson, null, 2);
         if(!fs.existsSync(path.join(__dirname, './json/config.json'))) {
@@ -56,11 +56,11 @@ function createFiles() {
                     console.log(err)
                 }
                 else {
-                    console.log('Data written to config file.');
+                    console.log('Data written to configuration file.');
                 }
             })
         } else {
-            console.log('config file already exists.');
+            console.log('Configuration file already exists.');
         }
         let tokendata = JSON.stringify(tokenjson, null, 2);
         if(!fs.existsSync(path.join(__dirname, './json/token.json'))) {
@@ -73,7 +73,7 @@ function createFiles() {
             }
             );
         } else {
-        console.log('token file already exists.');
+        console.log('Token file already exists.');
         }
         
     } catch(err) {
@@ -84,20 +84,19 @@ function createFiles() {
 const myArgs = process.argv.slice(2);
 
 function initializeApp() {
-    if(DEBUG) console.log('initializeApp()');
-
+    if(DEBUG) console.log('Initializing the app.');
     switch (myArgs[1]) {
     case '--all':
-        if(DEBUG) console.log('--all createFolders() & createFiles()');
+        if(DEBUG) console.log('Creating all required folders and files.');
         createFolders();
         createFiles();
         break;
     case '--cat':
-        if(DEBUG) console.log('--cat createFiles()');
+        if(DEBUG) console.log('Writing data to files.');
         createFiles();
         break;
     case '--mk':
-        if(DEBUG) console.log('--mk createFolders()');
+        if(DEBUG) console.log('Creating folders.');
         createFolders();
         break;
     case '--help':
