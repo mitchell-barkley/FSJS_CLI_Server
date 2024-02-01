@@ -1,34 +1,29 @@
 global.DEBUG = true;
 
-const fs = require('fs');
-
+const fs = require("fs");
+const { initializeApp } = require('./init.js');
 const myArgs = process.argv.slice(2);
 
-if(DEBUG) if(myArgs.length >= 1) console.log('App Args: ', myArgs);
-
-switch(myArgs[0]) {
-    case 'init':
-    case 'i':
-        if(DEBUG) console.log(myArgs[0], 'Initializing...');
-        // require('./init.js');
-        break;
-    case 'config':
-    case 'c':
-        if(DEBUG) console.log(myArgs[0], 'Display Configuration File.');
-        // require('./config.js');
-        break;
-    case 'token':
-    case 't':
-        if(DEBUG) console.log(myArgs[0], 'Generate a token for a new user.');
-        // require('./token.js');
-        break;
-    case '--help':
-    case '--h':
-    default:
-        fs.readFile(__dirname + "/help.txt", 'utf8', function(err, data) {
-        if (err) throw err;
+if(DEBUG) if(myArgs.length >= 1) console.log('the myapp.args: ', myArgs);
+switch (myArgs[0]) {
+case 'init':
+case 'i':
+    if(DEBUG) console.log(myArgs[0], ' - initialize the app.');
+    initializeApp();
+    break;
+case 'config':
+case 'c':
+    if(DEBUG) console.log(myArgs[0], ' - display the configuration file');
+    break;
+case 'token':
+case 't':
+    if(DEBUG) console.log(myArgs[0], ' - generate a user token');
+    break;
+case '--help':
+case '--h':
+default:
+    fs.readFile(__dirname + "/help.txt", (error, data) => {
+        if(error) throw error;
         console.log(data.toString());
-        });
-        break;
-
+    });
 }
