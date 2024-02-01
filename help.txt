@@ -1,0 +1,8 @@
+main <command> <option>
+
+Help:
+
+main --help             displays command options
+main init               initialize the app
+main config             create or modify the app configuration
+main token              manage the user tokens
