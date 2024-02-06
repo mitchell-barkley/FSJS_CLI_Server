@@ -2,12 +2,13 @@ main <command> <option>
 
 Usage:
 
-main --help        displays help
+main --help             displays help
 
-main init          initialize the app
-main init --mk     create all the app folders
-main init --cat    create all the app files
-main init --all    create all the folders and files
+main init               initialize the app
+main init --mk          create all the app folders
+main init --cat         create all the app files
+main init --all         create all the folders and files
+main init --encrypt     encrypt file
 
-main config        create or change the app configuration
-main token         manage the user tokens
+main config             create or change the app configuration
+main token              manage the user tokens
