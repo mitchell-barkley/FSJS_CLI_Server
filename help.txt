@@ -11,4 +11,7 @@ main init --all         create all the folders and files
 main init --encrypt     encrypt file
 
 main config             create or change the app configuration
+main config --show      display contents of config file
+main config --reset     change config back to default settings
+main config --set       set a specific attibute in config file
 main token              manage the user tokens

@@ -1,27 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const fsPromises = require('fs').promises;
-
-const folders = ['models', 'views', 'routes', 'images', 'logs', 'json'];
-
-const configjson = {
-    name: 'AppConfigCLI',
-    version: '1.0.0',
-    description: 'The Command Line Interface (CLI) for Main App.',
-    main: 'main.js',
-    superuser: 'admin',
-    database: 'dvdrental','sakila':'world'
-};
-
-const tokenjson = [{
-    created: '1985-10-08 18:35:00',
-    username: 'IRONDUKE',
-    email: 'fake_address@example.com',
-    phone: '5558675309',
-    token: 'token',
-    expires: '2019-12-23 12:30:00',
-    confirmed: 'tbd'
-}];
+const { folders, configjson, tokenjson } = require('./templates.js');
 
 function createFolders() {
     if(DEBUG) console.log('Initializing folders...');
@@ -102,7 +82,7 @@ function initializeApp() {
     case '--help':
     case '--h':
     default:
-        fs.readFile(__dirname + "/usage.txt", (error, data) => {
+        fs.readFile(__dirname + "/help.txt", (error, data) => {
             if(error) throw error;
             console.log(data.toString());
         });
